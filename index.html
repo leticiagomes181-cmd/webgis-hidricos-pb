@@ -4,17 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebGIS - Recursos Hídricos da Paraíba</title>
-    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="mapa"></div>
+    <div id="container">
+        <div id="sidebar">
+            <h2>Gestão Hídrica PB</h2>
+            
+            <div class="indicador">
+                <h3>Municípios</h3>
+                <p id="total-mun">...</p>
+            </div>
+            
+            <div class="indicador">
+                <h3>Açudes Monitorados</h3>
+                <p id="total-acudes">...</p>
+            </div>
+            
+            <div class="indicador">
+                <h3>Bacias Hidrográficas</h3>
+                <p id="total-bacias">...</p>
+            </div>
+            
+            <div class="indicador">
+                <h3>Trechos de Rios</h3>
+                <p id="total-rios">...</p>
+            </div>
+        </div>
+
+        <div id="mapa"></div>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    
     <script src="script.js"></script>
 </body>
 </html>
