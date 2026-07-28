@@ -31,37 +31,35 @@ function adicionarPopup(feature, layer) {
 // 🚀 FUNÇÃO PRINCIPAL PARA LER E RENDERIZAR OS DADOS
 async function carregarCamadas() {
     try {
-        // 1. Carrega os Municípios
         const respMun = await fetch('municipios.geojson');
         const dadosMun = await respMun.json();
         const camadaMun = L.geoJSON(dadosMun, { style: estiloMunicipios, onEachFeature: adicionarPopup });
         controleCamadas.addOverlay(camadaMun, "Municípios");
+        document.getElementById('total-mun').innerText = dadosMun.features.length; // Atualiza painel
 
-        // 2. Carrega as Bacias Hidrográficas
         const respBacias = await fetch('bacias.geojson');
         const dadosBacias = await respBacias.json();
         const camadaBacias = L.geoJSON(dadosBacias, { style: estiloBacias, onEachFeature: adicionarPopup });
         controleCamadas.addOverlay(camadaBacias, "Bacias Hidrográficas");
+        document.getElementById('total-bacias').innerText = dadosBacias.features.length; // Atualiza painel
 
-        // 3. Carrega os Rios
         const respRios = await fetch('rios.geojson');
         const dadosRios = await respRios.json();
         const camadaRios = L.geoJSON(dadosRios, { style: estiloRios, onEachFeature: adicionarPopup });
         controleCamadas.addOverlay(camadaRios, "Rios");
+        document.getElementById('total-rios').innerText = dadosRios.features.length; // Atualiza painel
         
-        // 4. Carrega os Açudes
         const respAcudes = await fetch('acudes.geojson');
         const dadosAcudes = await respAcudes.json();
         const camadaAcudes = L.geoJSON(dadosAcudes, { style: estiloAcudes, onEachFeature: adicionarPopup });
         controleCamadas.addOverlay(camadaAcudes, "Açudes");
+        document.getElementById('total-acudes').innerText = dadosAcudes.features.length; // Atualiza painel
 
-        // 5. Carrega as Rodovias (O bloco que faltava!)
         const respRodovias = await fetch('rodovias.geojson');
         const dadosRodovias = await respRodovias.json();
         const camadaRodovias = L.geoJSON(dadosRodovias, { style: estiloRodovias, onEachFeature: adicionarPopup });
         controleCamadas.addOverlay(camadaRodovias, "Rodovias");
 
-        // Deixa os municípios e açudes ligados por padrão
         camadaMun.addTo(map);
         camadaAcudes.addTo(map);
         
@@ -69,5 +67,4 @@ async function carregarCamadas() {
         console.error("Erro ao carregar os dados:", erro);
     }
 }
-
 carregarCamadas();
