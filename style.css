@@ -89,3 +89,58 @@ body, html {
 #busca-container button:hover {
     background-color: #0ea5e9;
 }
+/* =========================================
+   📱 RESPONSIVIDADE (Celulares e Tablets)
+   ========================================= */
+@media (max-width: 768px) {
+    /* Empilha o painel e o mapa verticalmente */
+    #container {
+        flex-direction: column;
+    }
+
+    /* O painel passa a ocupar 100% da largura e no máximo 45% da altura */
+    #sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 45vh; 
+        display: flex;
+        flex-wrap: wrap; /* Permite organizar itens lado a lado */
+        justify-content: space-between;
+        padding: 10px 15px;
+    }
+
+    /* Título e busca ocupam a largura total da linha */
+    #sidebar h2, #busca-container {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #sidebar h2 {
+        font-size: 18px;
+        padding-bottom: 10px;
+    }
+
+    /* Transforma as caixinhas para ficarem 2 por linha */
+    .indicador {
+        width: 48%; /* Quase metade da tela para cada */
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .indicador h3 {
+        font-size: 11px; /* Texto menor para caber */
+    }
+
+    .indicador p {
+        font-size: 22px; /* Números menores */
+        margin-top: 5px;
+    }
+
+    /* O mapa ocupa o resto da tela (55%) */
+    #mapa {
+        height: 55vh;
+        width: 100%;
+    }
+}
