@@ -1,0 +1,12 @@
+/* Remove margens padrão do navegador */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+/* Define que o mapa ocupará 100% da tela */
+#mapa {
+    width: 100%;
+    height: 100vh;
+}
