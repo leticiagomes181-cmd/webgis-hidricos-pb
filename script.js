@@ -19,6 +19,42 @@ const estiloRios = { color: "#1E90FF", weight: 1.5 };
 const estiloAcudes = { color: "#00008B", weight: 1, fillColor: "#4169E1", fillOpacity: 0.8 }; 
 const estiloRodovias = { color: "#FF8C00", weight: 1.5, opacity: 0.8 };
 
+// 🗺️ LEGENDA FLUTUANTE
+const legenda = L.control({ position: 'bottomright' });
+
+legenda.onAdd = function (map) {
+    const div = L.DomUtil.create('div', 'info legenda');
+    
+    // Constrói o HTML de dentro da legenda usando as mesmas cores do código
+    div.innerHTML = `
+        <h4>Legenda</h4>
+        <div class="legenda-item">
+            <div class="legenda-cor" style="background: rgba(65, 105, 225, 0.8); border: 1px solid #00008B;"></div>
+            <span>Açudes</span>
+        </div>
+        <div class="legenda-item">
+            <div class="legenda-linha" style="background: #1E90FF;"></div>
+            <span>Rios</span>
+        </div>
+        <div class="legenda-item">
+            <div class="legenda-linha" style="background: #FF8C00;"></div>
+            <span>Rodovias</span>
+        </div>
+        <div class="legenda-item">
+            <div class="legenda-cor" style="background: rgba(46, 139, 87, 0.1); border: 2px solid #2E8B57;"></div>
+            <span>Bacias Hidrográficas</span>
+        </div>
+        <div class="legenda-item">
+            <div class="legenda-cor" style="background: transparent; border: 1px solid #666666;"></div>
+            <span>Municípios</span>
+        </div>
+    `;
+    return div;
+};
+
+// Adiciona a legenda ao mapa
+legenda.addTo(map);
+
 // 💬 FUNÇÃO PARA OS POPUPS
 function adicionarPopup(feature, layer) {
     let popupContent = "<div style='font-family: Arial; font-size: 14px;'><b>Detalhes:</b><hr style='margin: 5px 0;'>";
