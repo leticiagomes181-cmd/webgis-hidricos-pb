@@ -1,13 +1,32 @@
 // Inicializa o mapa centralizado na Paraíba (zoom 7)
 const map = L.map('mapa').setView([-7.115, -36.720], 7);
 
-// Mapa de fundo (Basemap do OpenStreetMap)
+// 1. Mapa de fundo padrão (OpenStreetMap)
 const openStreetMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// Cria a caixinha de controle de camadas
-const controleCamadas = L.control.layers({"Mapa Base": openStreetMap}, {}).addTo(map);
+// 2. Google Satélite (Apenas a imagem)
+const googleSatelite = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+    attribution: '&copy; Google',
+    maxZoom: 20
+});
+
+// 3. Google Híbrido (Satélite + Nomes de cidades e ruas)
+const googleHibrido = L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+    attribution: '&copy; Google',
+    maxZoom: 20
+});
+
+// Agrupa os mapas base para a caixinha de controle
+const mapasDeFundo = {
+    "OpenStreetMap (Padrão)": openStreetMap,
+    "Google Satélite": googleSatelite,
+    "Google Híbrido": googleHibrido
+};
+
+// Cria a caixinha de controle de camadas com as novas opções
+const controleCamadas = L.control.layers(mapasDeFundo, {}).addTo(map);
 
 // Variável global para ser usada na pesquisa
 let camadaMunicipiosGlobal;
